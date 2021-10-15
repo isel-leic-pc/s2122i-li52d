@@ -21,6 +21,7 @@ public class Account {
             return true;
         }
     }
+
     public  boolean transferTo0(Account dst, long amount) {
         if (balance < amount) return false;
 
@@ -29,12 +30,42 @@ public class Account {
         return true;
     }
 
-    public  boolean transferTo(Account dst, long amount) {
+     public  synchronized boolean transferTo1(Account dst, long amount) {
+        if (balance < amount) return false;
+
+        balance -= amount;
+        dst.balance += amount;
+        return true;
+    }
+
+    public  boolean transferToDeadLock(Account dst, long amount) {
 
         synchronized (this) {
 
             if (balance < amount) return false;
             synchronized(dst) {
+                balance -= amount;
+                dst.balance += amount;
+            }
+        }
+        return true;
+    }
+
+    public  boolean transferToOk(Account dst, long amount) {
+        Account a, b;
+
+        if (this.hashCode() < dst.hashCode()) {
+            a = this;
+            b = dst;
+        }
+        else {
+            a = dst;
+            b = this;
+        }
+        synchronized (a) {
+
+            if (balance < amount) return false;
+            synchronized(b) {
                 balance -= amount;
                 dst.balance += amount;
             }

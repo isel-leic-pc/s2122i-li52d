@@ -18,7 +18,7 @@ public class TimeoutHolder {
     }
 
     public long remaining() {
-        if (noTimeout()) return toExpire;
+        if (noTimeout()) return Long.MAX_VALUE;
         return Math.max(0, toExpire - System.currentTimeMillis());
     }
 

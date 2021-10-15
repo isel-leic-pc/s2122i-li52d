@@ -12,19 +12,18 @@ import static org.junit.Assert.assertEquals;
 import static pc.l52d.threading.Utils.uninterruptibleJoin;
 
 public class HazardTests {
-    private static final int NTRANSFERS = 10000;
+    private static final int NTRANSFERS = 100000;
 
     private void transfers(Account[] accounts, int idx) {
-        Random r = new Random();
         int srcIdx = idx;
         int dstIdx = (1 + srcIdx) % 2;
         Account src = accounts[srcIdx];
         Account dst = accounts[dstIdx];
         for(int i=0; i < NTRANSFERS; ++i) {
 
-            System.out.printf("start transfer from %d to %d\n", srcIdx, dstIdx);
-            Account.transfer(src, dst, 10);
-            System.out.printf("end transfer from %d to %d\n", srcIdx, dstIdx);
+            //System.out.printf("start transfer from %d to %d\n", srcIdx, dstIdx);
+            src.transferToDeadLock(dst, 10);
+            //System.out.printf("end transfer from %d to %d\n", srcIdx, dstIdx);
         }
     }
 
