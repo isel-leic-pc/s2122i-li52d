@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+version 'unspecified'
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    // Use JUnit 4 API for testing.
+    testImplementation 'junit:junit:4.12'
+
+    implementation 'org.slf4j:slf4j-api:1.7.30'
+    runtime 'org.slf4j:slf4j-simple:1.7.30'
+
+    implementation 'org.eclipse.jetty:jetty-servlet:9.4.31.v20200723'
+
+    // dependency on last lecture module (on thread utils)
+    implementation project(':aula-10-08')
+}
+

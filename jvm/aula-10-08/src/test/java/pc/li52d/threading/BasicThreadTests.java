@@ -110,13 +110,11 @@ public class BasicThreadTests {
     private int counter = 0;
 
     private  void incLoop() {
-
         for(int j =0; j < NREPS; ++j) {
             synchronized (this) {
                 counter++;
             }
         }
-
     }
 
     @Test

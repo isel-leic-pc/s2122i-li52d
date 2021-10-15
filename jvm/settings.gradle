@@ -9,3 +9,6 @@
 
 rootProject.name = 's2122i-li52d'
 include('aula-10-08')
+include 'aula-10-13'
+include 'aula-10-15'
+
