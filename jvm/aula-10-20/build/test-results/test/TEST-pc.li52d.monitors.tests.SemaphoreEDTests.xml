@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pc.li52d.monitors.tests.SemaphoreEDTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-10-21T20:14:11" hostname="DESKTOP-2JGK2MO" time="9.728">
+  <properties/>
+  <testcase name="multiple_acquire_check_order_test" classname="pc.li52d.monitors.tests.SemaphoreEDTests" time="9.728"/>
+  <system-out><![CDATA[Start acquire threads
+Start releases
+Check assertions
+]]></system-out>
+  <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+]]></system-err>
+</testsuite>
