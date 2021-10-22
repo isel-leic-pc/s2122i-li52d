@@ -10,6 +10,8 @@ out/
 # Gradle temporaries and artefacts
 .gradle
 
+# Ignore Gradle build output directory
+build
 
 # Ignore Gradle GUI config
 gradle-app.setting
