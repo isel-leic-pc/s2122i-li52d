@@ -1,9 +1,0 @@
-pc/li52d/hazards/Resource.java
- pc.li52d.hazards.Resource
-pc/li52d/hazards/Account.java
- pc.li52d.hazards.Account
-pc/li52d/hazards/ServletExample.java
- pc.li52d.hazards.ServletExample
- pc.li52d.hazards.ServletExample$EchoServlet
-pc/li52d/hazards/Singleton.java
- pc.li52d.hazards.Singleton

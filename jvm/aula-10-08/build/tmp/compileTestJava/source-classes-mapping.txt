@@ -1,2 +1,0 @@
-pc/li52d/threading/BasicThreadTests.java
- pc.li52d.threading.BasicThreadTests
