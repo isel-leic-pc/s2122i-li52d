@@ -22,7 +22,7 @@ public class HazardTests {
         for(int i=0; i < NTRANSFERS; ++i) {
 
             //System.out.printf("start transfer from %d to %d\n", srcIdx, dstIdx);
-            src.transferToDeadLock(dst, 10);
+            src.transferTo1(dst, 10);
             //System.out.printf("end transfer from %d to %d\n", srcIdx, dstIdx);
         }
     }

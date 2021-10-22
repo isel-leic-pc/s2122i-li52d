@@ -1,6 +1,3 @@
-pc/li52d/monitors/explicit/MessageBoard.java
- pc.li52d.monitors.explicit.MessageBoard
- pc.li52d.monitors.explicit.MessageBoard$PendingConsumer
 pc/li52d/monitors/SemaphoreFifoED.java
  pc.li52d.monitors.SemaphoreFifoED
  pc.li52d.monitors.SemaphoreFifoED$Request

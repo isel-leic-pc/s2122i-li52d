@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="pc.li52d.threading.BasicThreadTests" tests="5" skipped="0" failures="1" errors="0" timestamp="2021-10-10T07:41:17" hostname="DESKTOP-2JGK2MO" time="8.17">
+<testsuite name="pc.li52d.threading.BasicThreadTests" tests="5" skipped="0" failures="1" errors="0" timestamp="2021-10-21T20:30:54" hostname="DESKTOP-2JGK2MO" time="8.185">
   <properties/>
-  <testcase name="helloFromThread" classname="pc.li52d.threading.BasicThreadTests" time="2.011"/>
-  <testcase name="interrupt_thread_test" classname="pc.li52d.threading.BasicThreadTests" time="4.006"/>
-  <testcase name="multi_thread_counter_increment_without_sync_test" classname="pc.li52d.threading.BasicThreadTests" time="0.038">
-    <failure message="java.lang.AssertionError: expected:&lt;2000000&gt; but was:&lt;648389&gt;" type="java.lang.AssertionError">java.lang.AssertionError: expected:&lt;2000000&gt; but was:&lt;648389&gt;
+  <testcase name="helloFromThread" classname="pc.li52d.threading.BasicThreadTests" time="2.019"/>
+  <testcase name="interrupt_thread_test" classname="pc.li52d.threading.BasicThreadTests" time="4.005"/>
+  <testcase name="multi_thread_counter_increment_without_sync_test" classname="pc.li52d.threading.BasicThreadTests" time="0.037">
+    <failure message="java.lang.AssertionError: expected:&lt;2000000&gt; but was:&lt;630686&gt;" type="java.lang.AssertionError">java.lang.AssertionError: expected:&lt;2000000&gt; but was:&lt;630686&gt;
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.failNotEquals(Assert.java:834)
 	at org.junit.Assert.assertEquals(Assert.java:645)
@@ -59,34 +59,34 @@
 	at java.base/java.lang.Thread.run(Thread.java:834)
 </failure>
   </testcase>
-  <testcase name="multi_thread_counter_increment_with_sync_test" classname="pc.li52d.threading.BasicThreadTests" time="0.113"/>
-  <testcase name="hello_from_thread_code_in_method_reference" classname="pc.li52d.threading.BasicThreadTests" time="2.002"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[[Test worker] INFO pc.li52d.threading.BasicThreadTests - test thread is Test worker, id 14
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - created thread is 17
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - Is daemon? false
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - group thread main
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - group thread Test worker
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - group thread /127.0.0.1:1042 to /127.0.0.1:1041 workers Thread 2
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - group thread /127.0.0.1:1042 to /127.0.0.1:1041 workers Thread 3
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - group thread Thread-3
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - Thread t isAlive=true
-[Thread-3] INFO pc.li52d.threading.BasicThreadTests - Hello from new thread Thread-3, id = 17 
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - After join thread t isAlive=false
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - Created thread Thread-4 isAlive state is true
-[Thread-4] INFO pc.li52d.threading.BasicThreadTests - I'm new  thread Thread-4 isAlive state is true
-[Thread-4] INFO pc.l52d.threading.Utils - sleep on thread 18 was interrupted
-Exception in thread "Thread-4" java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-	at pc.l52d.threading.Utils.sleep(Utils.java:31)
-	at pc.li52d.threading.BasicThreadTests.lambda$interrupt_thread_test$1(BasicThreadTests.java:97)
+  <testcase name="multi_thread_counter_increment_with_sync_test" classname="pc.li52d.threading.BasicThreadTests" time="0.115"/>
+  <testcase name="hello_from_thread_code_in_method_reference" classname="pc.li52d.threading.BasicThreadTests" time="2.007"/>
+  <system-out><![CDATA[test thread is Test worker, id 14
+created thread is 17
+Is daemon? false
+group thread main
+group thread Test worker
+group thread /127.0.0.1:2087 to /127.0.0.1:2086 workers Thread 2
+group thread /127.0.0.1:2087 to /127.0.0.1:2086 workers Thread 3
+group thread Thread-3
+Thread t isAlive= true
+Hello from new thread Thread-3, id = 17
+After join thread t isAlive= false
+Created thread Thread-4 isAlive state is trueafter join
+Hello from new thread Thread-45, id = 59
+]]></system-out>
+  <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+Exception in thread "Thread-4" java.util.IllegalFormatConversionException: d != java.lang.Boolean
+	at java.base/java.util.Formatter$FormatSpecifier.failConversion(Formatter.java:4426)
+	at java.base/java.util.Formatter$FormatSpecifier.printInteger(Formatter.java:2938)
+	at java.base/java.util.Formatter$FormatSpecifier.print(Formatter.java:2892)
+	at java.base/java.util.Formatter.format(Formatter.java:2673)
+	at java.base/java.io.PrintStream.format(PrintStream.java:1053)
+	at java.base/java.io.PrintStream.printf(PrintStream.java:949)
+	at org.gradle.internal.io.LinePerThreadBufferingOutputStream.printf(LinePerThreadBufferingOutputStream.java:146)
+	at pc.li52d.threading.BasicThreadTests.lambda$interrupt_thread_test$1(BasicThreadTests.java:95)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-Caused by: java.lang.InterruptedException: sleep interrupted
-	at java.base/java.lang.Thread.sleep(Native Method)
-	at pc.l52d.threading.Utils.sleep(Utils.java:27)
-	... 2 more
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - after join
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - Thread t isAlive=true
-[Thread-45] INFO pc.li52d.threading.BasicThreadTests - Hello from new thread Thread-45, id = 59 
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - After join thread t isAlive=false
 ]]></system-err>
 </testsuite>

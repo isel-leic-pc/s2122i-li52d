@@ -2,6 +2,9 @@ pc/li52d/monitors/ClassicSemaphore.java
  pc.li52d.monitors.ClassicSemaphore
 pc/li52d/monitors/SimpleSemaphore.java
  pc.li52d.monitors.SimpleSemaphore
+pc/li52d/monitors/utils/BatchReqQueue.java
+ pc.li52d.monitors.utils.BatchReqQueue
+ pc.li52d.monitors.utils.BatchReqQueue$Round
 pc/li52d/monitors/utils/NodeList.java
  pc.li52d.monitors.utils.NodeList
  pc.li52d.monitors.utils.NodeList$Node

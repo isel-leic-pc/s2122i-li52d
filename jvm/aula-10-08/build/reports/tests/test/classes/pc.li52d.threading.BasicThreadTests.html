@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">8.170s</div>
+<div class="counter">8.183s</div>
 <p>duration</p>
 </div>
 </td>
@@ -67,7 +67,10 @@
 <a href="#tab1">Tests</a>
 </li>
 <li>
-<a href="#tab2">Standard error</a>
+<a href="#tab2">Standard output</a>
+</li>
+<li>
+<a href="#tab3">Standard error</a>
 </li>
 </ul>
 <div id="tab0" class="tab">
@@ -76,7 +79,7 @@
 <a name="multi_thread_counter_increment_without_sync_test"></a>
 <h3 class="failures">multi_thread_counter_increment_without_sync_test</h3>
 <span class="code">
-<pre>java.lang.AssertionError: expected:&lt;2000000&gt; but was:&lt;648389&gt;
+<pre>java.lang.AssertionError: expected:&lt;2000000&gt; but was:&lt;630686&gt;
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.failNotEquals(Assert.java:834)
 	at org.junit.Assert.assertEquals(Assert.java:645)
@@ -145,60 +148,66 @@
 </thead>
 <tr>
 <td class="success">helloFromThread</td>
-<td class="success">2.011s</td>
+<td class="success">2.019s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">hello_from_thread_code_in_method_reference</td>
-<td class="success">2.002s</td>
+<td class="success">2.007s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">interrupt_thread_test</td>
-<td class="success">4.006s</td>
+<td class="success">4.005s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">multi_thread_counter_increment_with_sync_test</td>
-<td class="success">0.113s</td>
+<td class="success">0.115s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="failures">multi_thread_counter_increment_without_sync_test</td>
-<td class="failures">0.038s</td>
+<td class="failures">0.037s</td>
 <td class="failures">failed</td>
 </tr>
 </table>
 </div>
 <div id="tab2" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>test thread is Test worker, id 14
+created thread is 17
+Is daemon? false
+group thread main
+group thread Test worker
+group thread /127.0.0.1:2087 to /127.0.0.1:2086 workers Thread 2
+group thread /127.0.0.1:2087 to /127.0.0.1:2086 workers Thread 3
+group thread Thread-3
+Thread t isAlive= true
+Hello from new thread Thread-3, id = 17
+After join thread t isAlive= false
+Created thread Thread-4 isAlive state is trueafter join
+Hello from new thread Thread-45, id = 59
+</pre>
+</span>
+</div>
+<div id="tab3" class="tab">
 <h2>Standard error</h2>
 <span class="code">
-<pre>[Test worker] INFO pc.li52d.threading.BasicThreadTests - test thread is Test worker, id 14
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - created thread is 17
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - Is daemon? false
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - group thread main
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - group thread Test worker
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - group thread /127.0.0.1:1042 to /127.0.0.1:1041 workers Thread 2
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - group thread /127.0.0.1:1042 to /127.0.0.1:1041 workers Thread 3
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - group thread Thread-3
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - Thread t isAlive=true
-[Thread-3] INFO pc.li52d.threading.BasicThreadTests - Hello from new thread Thread-3, id = 17 
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - After join thread t isAlive=false
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - Created thread Thread-4 isAlive state is true
-[Thread-4] INFO pc.li52d.threading.BasicThreadTests - I'm new  thread Thread-4 isAlive state is true
-[Thread-4] INFO pc.l52d.threading.Utils - sleep on thread 18 was interrupted
-Exception in thread &quot;Thread-4&quot; java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-	at pc.l52d.threading.Utils.sleep(Utils.java:31)
-	at pc.li52d.threading.BasicThreadTests.lambda$interrupt_thread_test$1(BasicThreadTests.java:97)
+<pre>SLF4J: Failed to load class &quot;org.slf4j.impl.StaticLoggerBinder&quot;.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+Exception in thread &quot;Thread-4&quot; java.util.IllegalFormatConversionException: d != java.lang.Boolean
+	at java.base/java.util.Formatter$FormatSpecifier.failConversion(Formatter.java:4426)
+	at java.base/java.util.Formatter$FormatSpecifier.printInteger(Formatter.java:2938)
+	at java.base/java.util.Formatter$FormatSpecifier.print(Formatter.java:2892)
+	at java.base/java.util.Formatter.format(Formatter.java:2673)
+	at java.base/java.io.PrintStream.format(PrintStream.java:1053)
+	at java.base/java.io.PrintStream.printf(PrintStream.java:949)
+	at org.gradle.internal.io.LinePerThreadBufferingOutputStream.printf(LinePerThreadBufferingOutputStream.java:146)
+	at pc.li52d.threading.BasicThreadTests.lambda$interrupt_thread_test$1(BasicThreadTests.java:95)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-Caused by: java.lang.InterruptedException: sleep interrupted
-	at java.base/java.lang.Thread.sleep(Native Method)
-	at pc.l52d.threading.Utils.sleep(Utils.java:27)
-	... 2 more
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - after join
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - Thread t isAlive=true
-[Thread-45] INFO pc.li52d.threading.BasicThreadTests - Hello from new thread Thread-45, id = 59 
-[Test worker] INFO pc.li52d.threading.BasicThreadTests - After join thread t isAlive=false
 </pre>
 </span>
 </div>
@@ -210,7 +219,7 @@ Caused by: java.lang.InterruptedException: sleep interrupted
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.8.3</a> at Oct 10, 2021, 8:41:25 AM</p>
+<a href="http://www.gradle.org">Gradle 6.8.3</a> at Oct 21, 2021, 9:31:02 PM</p>
 </div>
 </div>
 </body>

@@ -9,10 +9,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    // Use JUnit 4 API for testing.
+    testImplementation 'junit:junit:4.12'
 }
 
-test {
-    useJUnitPlatform()
-}
