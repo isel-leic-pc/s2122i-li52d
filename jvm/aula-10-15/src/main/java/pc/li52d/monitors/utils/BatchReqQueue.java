@@ -19,6 +19,7 @@ public class BatchReqQueue<T> {
 
 
     public BatchReqQueue(T t) {
+
         newBatch(t);
     }
 
