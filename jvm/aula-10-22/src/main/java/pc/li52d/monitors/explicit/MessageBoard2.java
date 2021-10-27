@@ -45,11 +45,11 @@ public class MessageBoard2<M> {
 
     public final static Message EMPTY_MESSAGE = new Message();
 
-    private Lock monitor;
-    private Condition hasMsg;
+    private final Lock monitor;
+    private final Condition hasMsg;
     private Message<M> container;
 
-    private NodeList<M> requests;
+    private final NodeList<M> requests;
 
     public MessageBoard2() {
         monitor = new ReentrantLock();

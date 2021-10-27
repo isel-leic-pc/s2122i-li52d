@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>SynchUtils</AssemblyName>
+    <RootNamespace>SynchUtils</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="SemaphoreFifoED.cs" />
+    <Compile Remove="SemaphoreFifoSN.cs" />
+  </ItemGroup>
+
+</Project>

@@ -16,9 +16,9 @@ import java.util.concurrent.locks.ReentrantLock;
 public class BlockingQueue<T> {
     private int capacity;
     private final Queue<T> items;
-    private Lock monitor;
-    private Condition hasItems;
-    private Condition hasSpace;
+    private final Lock monitor;
+    private final Condition hasItems;
+    private final Condition hasSpace;
 
     public BlockingQueue(int capacity) {
         items = new LinkedList<>();

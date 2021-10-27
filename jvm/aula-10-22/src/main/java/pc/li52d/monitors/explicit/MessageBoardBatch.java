@@ -1,8 +1,8 @@
 /**
  * A message board synchronizer using execution delegation pattern.
- * In this case we use a BatchReqQueue since the waiters are all awaked
- * in broadcast and with exactly the same state, so just one representant is needed
- * for all waiters and that is exactly what a BatchReqQueue provides
+ * In this case we use a BatchReqQueue since the waiters are all awoken
+ * in broadcast and with exactly the same state, so just one representative is needed
+ * for all waiters and that is exactly what a BatchReqQueue provides.
  */
 package pc.li52d.monitors.explicit;
 
@@ -53,16 +53,16 @@ public class MessageBoardBatch<M> {
 
     public final static Message EMPTY_MESSAGE = new Message();
 
-    private Lock monitor;
-    private Condition hasMsg;
+    private final Lock monitor;
+    private final Condition hasMsg;
     private Message<M> container;
-    private BatchReqQueue<Request<M>> requests;
+    private final BatchReqQueue<Request<M>> requests;
 
     public MessageBoardBatch() {
         monitor = new ReentrantLock();
         hasMsg = monitor.newCondition();
         container = EMPTY_MESSAGE;
-        requests = new BatchReqQueue<>();
+        requests = new BatchReqQueue<>(new Request<>());
     }
 
     private void notifyWaiters(M message) {

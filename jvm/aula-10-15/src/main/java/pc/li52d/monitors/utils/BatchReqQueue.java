@@ -17,6 +17,11 @@ public class BatchReqQueue<T> {
     private int countWaiters;
     private Round<T> current;
 
+
+    public BatchReqQueue(T t) {
+        newBatch(t);
+    }
+
     public Round<T> add() {
         countWaiters++;
         return current;

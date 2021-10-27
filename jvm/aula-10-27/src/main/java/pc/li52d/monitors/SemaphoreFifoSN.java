@@ -1,4 +1,4 @@
-package pc.li52d.monitors.explicit;
+package pc.li52d.monitors;
 
 import pc.li52d.monitors.utils.NodeList;
 import pc.li52d.monitors.utils.TimeoutHolder;
@@ -7,31 +7,31 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class SemaphoreFifoED {
+public class SemaphoreFifoSN {
     /**
      *  this class instances represent
      *  a pending acquire request
      */
     private static class Request {
         public final int units;
+        public final Condition condition;
         public boolean done;
 
-        public Request(int units) {
+        public Request(int units, Condition condition) {
             this.units = units;
             this.done = false;
+            this.condition = condition;
         }
     }
 
     private int units;
     private final NodeList<Request> requests;
     private final ReentrantLock monitor;
-    private final Condition hasUnits;
 
-    public SemaphoreFifoED(int initial) {
+    public SemaphoreFifoSN(int initial) {
         if (initial > 0)
             units = initial;
         monitor = new ReentrantLock();
-        hasUnits = monitor.newCondition();
         requests = new NodeList<>();
     }
 
@@ -40,16 +40,13 @@ public class SemaphoreFifoED {
      * to process all possible pending requests
      */
     private void notifyWaiters() {
-        boolean toNotify = false;
         while (requests.size() > 0 && units >= requests.first().units) {
 
             Request r = requests.removeFirst();
             units-= r.units;
             r.done = true;
-            toNotify = true;
-        }
-        if (toNotify) {
-            hasUnits.signalAll();
+            r.condition.signal();
+
         }
     }
 
@@ -65,7 +62,7 @@ public class SemaphoreFifoED {
             if (millis == 0) return false;
 
             // prepare wait
-            var req = new Request(n);
+            var req = new Request(n, monitor.newCondition());
             var node = requests.addLast(req);
             TimeoutHolder th = new TimeoutHolder(millis);
 
@@ -73,8 +70,8 @@ public class SemaphoreFifoED {
             do {
                 try {
                     // non interruption path
-                    hasUnits.await(th.remaining(),
-                                  TimeUnit.MILLISECONDS);
+                    req.condition.await(th.remaining(),
+                        TimeUnit.MILLISECONDS);
                     if (req.done) return true;
                     if (th.timeout()) {
                         requests.remove(node);
@@ -109,9 +106,6 @@ public class SemaphoreFifoED {
         finally {
             monitor.unlock();
         }
-
-
-
 
     }
 

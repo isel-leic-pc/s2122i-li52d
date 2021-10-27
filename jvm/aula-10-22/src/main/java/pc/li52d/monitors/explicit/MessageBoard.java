@@ -50,10 +50,10 @@ public class MessageBoard<M> {
 
     public final static Message EMPTY_MESSAGE = new Message();
 
-    private Lock monitor;
-    private Condition hasMsg;
+    private final Lock monitor;
+    private final Condition hasMsg;
     private Message<M> container;
-    private NodeList<Request<M>> requests;
+    private final NodeList<Request<M>> requests;
 
     public MessageBoard() {
         monitor = new ReentrantLock();

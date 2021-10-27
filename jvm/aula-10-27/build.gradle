@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+version 'unspecified'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Use JUnit 4 API for testing.
+    testImplementation 'junit:junit:4.12'
+
+    // dependency on last lecture module (on thread utils)
+    implementation project(':aula-10-08')
+
+    // dependency on last lecture module (on monitor utils)
+    implementation project(':aula-10-15')
+}
+
