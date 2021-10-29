@@ -16,8 +16,6 @@ import static pc.li52d.monitors.utils.TimeoutHolder.INFINITE;
 
 
 public class SemaphoreEDTests {
-
-
     private enum State {
         Started,
         Done,
@@ -52,13 +50,14 @@ public class SemaphoreEDTests {
         assertEquals(State.Timeout, state[0]);
     }
 
-    @Test
-    public void multiple_acquire_check_order_test() {
-        int[] toAcquireValues = { 5, 2, 7, 1 };
+    private void multiple_acquire_check_order_round_test()  {
+        int[] toAcquireValues = { 7, 6, 5, 4 };
 
         AtomicInteger index = new AtomicInteger(0);
+
         int[] acquiredValues = new int[toAcquireValues.length];
         State[] threadStates = new State[toAcquireValues.length];
+        Arrays.fill(threadStates, State.Started );
 
         List<Thread> threads = new ArrayList<>();
 
@@ -81,16 +80,16 @@ public class SemaphoreEDTests {
             threads.add(t);
             t.start();
 
-            // force acquire order just for test purposes
+            // give a time to force acquire order just for test purposes
             sleep(500);
         }
 
-        int totalSingleReleases = Arrays.stream(toAcquireValues).sum();
 
         System.out.println("Start releases");
-        for (int i= 0; i < totalSingleReleases; ++i) {
-            sem.release(1);
-            // force completed acquire order just for test purposes
+        for (int i= 0; i < toAcquireValues.length; ++i) {
+            sem.release(toAcquireValues[i]);
+            // wait a moment to give time of the acquire thread to put is
+            // result in the acquiredValues array...
             sleep(500);
         }
 
@@ -100,9 +99,27 @@ public class SemaphoreEDTests {
 
         System.out.println("Check assertions");
         assertFalse( Arrays
-                     .stream(threadStates)
-                     .anyMatch(s -> s != State.Done));
+            .stream(threadStates)
+            .anyMatch(s -> s != State.Done));
 
         assertArrayEquals(toAcquireValues, acquiredValues);
+    }
+
+    /**
+     * Check if the order of aquisition is FIFO
+     * This is a tricky test because we need to rely on sleeps
+     * to have confidence of the flow we want
+     */
+    @Test
+    public void multiple_acquire_check_order_test() {
+        multiple_acquire_check_order_round_test();
+    }
+
+    @Test
+    public void multiple_acquire_check_order_many_rounds_test() {
+
+
+        for (int i= 0; i < 100; ++i)
+            multiple_acquire_check_order_round_test();
     }
 }

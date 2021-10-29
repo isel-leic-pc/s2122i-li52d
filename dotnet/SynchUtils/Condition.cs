@@ -32,10 +32,6 @@ namespace SynchUtils
         public static void Wait(this Object condition, 
             Object monitor, int timeout) {
 
-            
-     
-           
-      
             if (condition == monitor) {
                 Monitor.Wait(monitor, timeout);
                 return;
@@ -45,18 +41,24 @@ namespace SynchUtils
             // with many problems that can lead to 
             // inconsistencies and deadlock!
             // to solve in the next lecture!
+
+
+           
+            Monitor.Enter(condition);
             Monitor.Exit(monitor); // leave monitor
 
+
+
             try {
-                Monitor.Enter(condition);
                 Monitor.Wait(condition, timeout);
             }
             finally {
                 bool interrupted;
-                EnterUninterruptibly(monitor, out interrupted);
                 Monitor.Exit(condition);
+                EnterUninterruptibly(monitor, out interrupted);
+              
                 if (interrupted)
-                    throw new ThreadInterruptedException();-
+                    throw new ThreadInterruptedException();
             }
         }
 
@@ -67,8 +69,18 @@ namespace SynchUtils
         /// <param name="condition"></param>
         /// <param name="monitor"></param>
         public static void Notify(this Object condition, Object monitor) {
-           
-           
+            if (condition == monitor) {
+                Monitor.Pulse(monitor);
+                return;
+            }
+
+          
+            bool interrupted;
+            EnterUninterruptibly(condition, out interrupted);
+            Monitor.Pulse(condition);
+            Monitor.Exit(condition);
+            if (interrupted)
+                Thread.CurrentThread.Interrupt();
 
         }
 

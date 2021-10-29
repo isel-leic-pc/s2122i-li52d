@@ -18,5 +18,9 @@ dependencies {
     // dependency on last lecture module (on monitor utils)
     implementation project(':aula-10-15')
 
+    implementation group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.25'
+    testImplementation group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.25'
+
+
 }
 

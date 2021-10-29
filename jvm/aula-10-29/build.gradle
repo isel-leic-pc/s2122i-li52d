@@ -8,14 +8,14 @@ repositories {
     mavenCentral()
 }
 
-
 dependencies {
     // Use JUnit 4 API for testing.
-    implementation group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.25'
-    testImplementation group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.25'
-
+    testImplementation 'junit:junit:4.12'
 
     // dependency on last lecture module (on thread utils)
     implementation project(':aula-10-08')
+
+    // dependency on last lecture module (on monitor utils)
+    implementation project(':aula-10-15')
 }
 
