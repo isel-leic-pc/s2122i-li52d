@@ -4,7 +4,6 @@ import org.junit.Test;
 import pc.li52d.hazards.Account;
 
 import java.util.List;
-import java.util.Random;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;

@@ -20,9 +20,8 @@ public class BasicThreadTests {
 
     private  void helloFunc() {
         sleep(2000);
-        System.out.printf("Hello from new thread %s, id = %d\n",
-            Thread.currentThread().getName(),
-            Thread.currentThread().getId());
+        log.info("Hello from new thread");
+
     }
 
     @Test

@@ -11,8 +11,8 @@ repositories {
 dependencies {
     // Use JUnit 4 API for testing.
     testImplementation 'junit:junit:4.12'
-    implementation group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.25'
-    testImplementation group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.25'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+    testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
 
 }
 
