@@ -90,7 +90,7 @@ public class MessageBoxTests {
         t.start();
         t.join(5000);
         assertFalse(t.isAlive());
-        assertTrue(result[0] != null && result[0].isEmpty());
+        assertTrue(result[0] != null && result[0].isPresent());
         assertFalse(interrupted[0]);
     }
 
@@ -110,10 +110,15 @@ public class MessageBoxTests {
         });
 
         t.start();
-        while(t.getState() != Thread.State.TIMED_WAITING);
-        //sleep(1000);
+        while(t.getState() != Thread.State.TIMED_WAITING &&
+            t.getState() != Thread.State.TERMINATED) {
+            log.info("thread state = {}", t.getState());
+            sleep(50);
+        }
 
-        log.info("thread state = {}", t.getState());
+
+
+
         t.interrupt();
         t.join(5000);
 
@@ -166,7 +171,7 @@ public class MessageBoxTests {
             while(true) {
                 Optional<Integer> okey =
                     mb.waitForMessage(TimeoutHolder.INFINITE);
-                if (okey.isEmpty()) timeoutCount.incrementAndGet();
+                if (!okey.isPresent()) timeoutCount.incrementAndGet();
                 else {
                     MessageStats ms = stats.computeIfAbsent(okey.get(), (k) -> new MessageStats());
                     ms.receiveCount.incrementAndGet();
@@ -222,7 +227,7 @@ public class MessageBoxTests {
         receivers.forEach(r -> r.interrupt());
 
         for (Thread rcv : receivers) {
-            rcv.join(100);
+            rcv.join(200);
             assertFalse(rcv.isAlive());
         }
 

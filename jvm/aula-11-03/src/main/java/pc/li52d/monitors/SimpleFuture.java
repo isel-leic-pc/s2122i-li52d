@@ -13,7 +13,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * of an activity that asynchronously will produce the future value.
  * This means, for instance, that the value production may terminate with an exception
  * as well with some legal value.
- * Note this is fundamentally different of the futures for BlockingMessageQueue,
+ * Note this is fundamentally different from the futures for BlockingMessageQueue,
  * where they are just a container for the value produced from an incoming
  * enqueue operation.
  * @param <T>
