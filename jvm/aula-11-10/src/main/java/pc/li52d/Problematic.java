@@ -3,11 +3,16 @@ package pc.li52d;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static pc.l52d.threading.Utils.sleep;
+
+
 public class Problematic {
     private static final Logger logger = LoggerFactory.getLogger(Problematic.class);
 
-    private static volatile boolean ready;
-    private static int number;
+    // try remove the volatile qualifier
+    private volatile static  boolean ready;
+    private  static int number;
+
 
     public static void main(String[] args)
         throws InterruptedException {
@@ -15,13 +20,15 @@ public class Problematic {
         logger.info("Start!");
 
         Thread t1 = new Thread(() -> {
-            while(!ready);
+            while(!ready) ;
             logger.info("number: {}", number);
         });
 
         t1.start();
+
         // give thread time to start - ugly :(
-        Thread.sleep(1000);
+        sleep(1000);
+
 
         number = 42;
         ready = true;

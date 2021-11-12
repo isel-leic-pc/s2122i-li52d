@@ -5,7 +5,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Supplier;
 
 public class Lazy<T> {
-    private  T value;
+    private volatile  T value;
     private final Lock lock;
     private final Supplier<T> creator;
 
@@ -15,13 +15,14 @@ public class Lazy<T> {
     }
 
     public T get() {
-        lock.lock();
-        try {
-            if (value == null)
-                value = creator.get();
-        }
-        finally {
-            lock.unlock();
+        if (value == null) {
+            lock.lock();
+            try {
+                if (value == null)
+                    value = creator.get();
+            } finally {
+                lock.unlock();
+            }
         }
         return value;
     }

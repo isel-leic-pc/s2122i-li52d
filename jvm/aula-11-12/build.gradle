@@ -12,12 +12,12 @@ dependencies {
     // Use JUnit 4 API for testing.
     testImplementation 'junit:junit:4.12'
     implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
-
     testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+
     // dependency on last lecture module (on thread utils)
     implementation project(':aula-10-08')
 
     // dependency on last lecture module (on monitor utils)
     implementation project(':aula-10-15')
-}
 
+}
