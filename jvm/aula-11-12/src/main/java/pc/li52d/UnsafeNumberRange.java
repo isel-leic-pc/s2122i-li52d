@@ -1,6 +1,6 @@
 package pc.li52d;
 
-import java.util.concurrent.atomic.AtomicInteger;
+
 import java.util.concurrent.atomic.AtomicReference;
 
 public class UnsafeNumberRange {

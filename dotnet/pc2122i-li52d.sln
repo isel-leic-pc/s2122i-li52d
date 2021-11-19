@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SynchUtils", "SynchUtils\SynchUtils.csproj", "{AC1A6C1A-0C7D-465F-87DE-950883975686}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitors", "Monitors\Monitors.csproj", "{5DDD8414-0458-409C-8CDB-17E185F786FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monitors", "Monitors\Monitors.csproj", "{5DDD8414-0458-409C-8CDB-17E185F786FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryModel", "MemoryModel\MemoryModel.csproj", "{DDF5BF87-D74C-4BC6-8259-5613E4EA129D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{5DDD8414-0458-409C-8CDB-17E185F786FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DDD8414-0458-409C-8CDB-17E185F786FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DDD8414-0458-409C-8CDB-17E185F786FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDF5BF87-D74C-4BC6-8259-5613E4EA129D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDF5BF87-D74C-4BC6-8259-5613E4EA129D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDF5BF87-D74C-4BC6-8259-5613E4EA129D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDF5BF87-D74C-4BC6-8259-5613E4EA129D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
