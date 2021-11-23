@@ -1,14 +1,13 @@
 package pc.li52d.lf;
 
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.function.DoubleUnaryOperator;
 
 public class QueueLF<E> {
 
     private static class Node<E> {
         final E value;
-        AtomicReference<Node<E>> next;
+        final AtomicReference<Node<E>> next;
 
         Node(E value) {
             this.value = value;
@@ -20,10 +19,12 @@ public class QueueLF<E> {
         }
     }
 
-    private AtomicReference<Node<E>> head, tail;
+    private final AtomicReference<Node<E>> head, tail;
 
     public QueueLF() {
-        head = tail = new AtomicReference<>(new Node<>());
+        Node<E> dummy = new Node<>();
+        head = new AtomicReference<>(dummy);
+        tail = new AtomicReference<>(dummy);
     }
 
     public void offer(E elem) {
@@ -33,7 +34,6 @@ public class QueueLF<E> {
             Node<E> obsTailNext = obsTail.next.get();
             if (obsTail == tail.get()) {
                 if (obsTailNext == null) {
-
                     if (obsTail.next.compareAndSet(null, newNode)) {
                         tail.compareAndSet(obsTail, newNode);
                         return;
