@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace Aula_12_03
 {
-    class TaskOpers
+    public class TaskOpers
     {
 
         /// <summary>
-        /// Incomplete implementation of an async method to
-        /// download and save http response content on a file
+        /// Incomplete implementation of a TAP method to
+        /// download and save http response content on a file.
+        /// The completed version is presented in class TaskUtils of Aula-12-10-AyncIntro2 project
         /// </summary>
         /// <param name="url"></param>
         /// <param name="fileName"></param>
@@ -21,18 +22,17 @@ namespace Aula_12_03
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0");
 
-            Task<Stream> task = client.GetAsync(url)
-            .ContinueWith((ant) =>
+            Task<HttpResponseMessage> task = client.GetAsync(url);
+
+            task.ContinueWith((ant) =>
             {
-                
-                HttpResponseMessage resp = ant.Result;
+                 //throw new IOException("Bad request");
+                 HttpResponseMessage resp = ant.Result;
                 return resp.Content.ReadAsStreamAsync();
             })
             .Unwrap();
-            
 
-            return  null;
-                  
+            return null;
         }
     }
 }

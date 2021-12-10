@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 
 namespace Aula_12_03
 {
-    interface IAsyncOper<T>
+    public interface IAsyncOper<T>
     {
         /// <summary>
         /// retriev the operation result. Can throw exceptions
         /// </summary>
         /// <returns></returns>
-        T get();
+        T Get();
 
         bool Done
         {
@@ -24,11 +22,11 @@ namespace Aula_12_03
     {
         public bool Done => throw new NotImplementedException();
 
-        public T get() {
+        public T Get() {
             throw new NotImplementedException();
         }
 
-        public void complete(T val, Exception e) {
+        public void Complete(T val, Exception e) {
 
         }
     }
@@ -95,18 +93,18 @@ namespace Aula_12_03
                 try {
                     do {
                         IAsyncOper<int> res = ReadAsync(buffer);
-                        int n = res.get();
+                        int n = res.Get();
                         if (n == 0) {
-                            pendingOper.complete(true, null);
+                            pendingOper.Complete(true, null);
                             return;
                         }
-                        dst.WriteAsync(buffer, n).get();
+                        dst.WriteAsync(buffer, n).Get();
 
                     }
                     while (true);
                 }
                 catch(Exception e) {
-                    pendingOper.complete(false, e);
+                    pendingOper.Complete(false, e);
                 }
                
               
