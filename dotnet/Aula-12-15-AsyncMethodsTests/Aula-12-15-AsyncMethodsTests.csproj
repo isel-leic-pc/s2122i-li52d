@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Aula_12_15_AsyncMethodsTests</RootNamespace>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Aula-12-10-AsynIntro2\Aula-12-10-AsyncIntro2.csproj" />
+    <ProjectReference Include="..\Aula-12-15-AsyncMethods\Aula-12-15-AsyncMethods.csproj" />
+  </ItemGroup>
+
+</Project>

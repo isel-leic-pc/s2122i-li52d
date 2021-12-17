@@ -10,20 +10,7 @@ namespace AsyncIntro2
     public class TaskExamples
     {
 
-        public static Task<long> CopyAsync(Stream input, Stream output) {
-            byte[] buffer = new byte[4096];
-
-            Task<long> writeContinuation(Task ant) {
-                return Task.FromResult(0L);
-            }
-
-            Task<long> readContinuation(Task<int> antl) {
-                return Task.FromResult(0L);
-
-            }
-
-            return Task.FromResult(0L);
-        }
+     
 
         public static Task<int> ManualTaskCreationWithStartNew() {
             var  task = Task.Factory.StartNew(()=>

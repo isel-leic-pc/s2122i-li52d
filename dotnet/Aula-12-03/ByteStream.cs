@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Aula_12_03
 {
@@ -52,7 +53,8 @@ namespace Aula_12_03
         /// <returns></returns>
         IAsyncOper<int> ReadAsync(byte[] buffer);
 
-        void ReadAsync(byte[] buffer, OperationCompleted<int> completed);
+        void ReadAsync(byte[] buffer, 
+            OperationCompleted<int> completed);
 
 
         // write operations
@@ -132,5 +134,7 @@ namespace Aula_12_03
             }
             ReadAsync(buffer, readCompleted);
         }
+
+        
     }
 }
