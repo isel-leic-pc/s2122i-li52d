@@ -28,12 +28,12 @@
         private void InitializeComponent() {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.url1 = new System.Windows.Forms.TextBox();
             this.url2 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.status = new System.Windows.Forms.TextBox();
             this.url3 = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.url1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -59,15 +59,6 @@
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 
-            // url1
-            // 
-            this.url1.Location = new System.Drawing.Point(49, 35);
-            this.url1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.url1.Name = "url1";
-            this.url1.Size = new System.Drawing.Size(622, 27);
-            this.url1.TabIndex = 2;
-            this.url1.Text = "http://www.tsf.pt/favicon.ico";
-            // 
             // url2
             // 
             this.url2.Location = new System.Drawing.Point(49, 70);
@@ -86,7 +77,7 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "Show";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button_Click);
+            this.button1.Click += new System.EventHandler(this.button3_Click);
             // 
             // status
             // 
@@ -114,6 +105,16 @@
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 8;
             this.pictureBox3.TabStop = false;
+            // 
+            // url1
+            // 
+            this.url1.Location = new System.Drawing.Point(49, 35);
+            this.url1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.url1.Name = "url1";
+            this.url1.Size = new System.Drawing.Size(622, 27);
+            this.url1.TabIndex = 2;
+            this.url1.Text = "http://www.tsf.pt/favicon.ico";
+            this.url1.TextChanged += new System.EventHandler(this.url1_TextChanged);
             // 
             // Form1
             // 
@@ -143,12 +144,12 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.TextBox url1;
         private System.Windows.Forms.TextBox url2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox status;
         private System.Windows.Forms.TextBox url3;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.TextBox url1;
     }
 }
 

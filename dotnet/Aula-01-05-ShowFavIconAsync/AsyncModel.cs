@@ -27,23 +27,14 @@ namespace ShowFavIconAsync
             client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0");
 
             return Task.Delay(spendTime)
-                .ContinueWith(__ => {
-                    Debug.WriteLine("DownloadImageFromUrlAsync: delay continuation in thread {0}",
-                                      Thread.CurrentThread.ManagedThreadId);
-                    return client.GetStreamAsync(url);
-
-                })
+                .ContinueWith(__ => client.GetStreamAsync(url))
                 .Unwrap()
                 .ContinueWith(ant => {
-                    Debug.WriteLine("DownloadImageFromUrlAsync: GetStreamAsync continuation in thread {0}",
-                                    Thread.CurrentThread.ManagedThreadId);
                     MemoryStream ms = new MemoryStream();
                     return ant.Result.CopyToAsync(ms).ContinueWith(_ => ms);
                 })
                 .Unwrap()
                 .ContinueWith(ant2 => {
-                    Debug.WriteLine("DownloadImageFromUrlAsync: CopyToAsync continuation in thread {0}",
-                                   Thread.CurrentThread.ManagedThreadId);
                     client.Dispose();
                     return Image.FromStream(ant2.Result);
                 });
@@ -58,14 +49,16 @@ namespace ShowFavIconAsync
             Debug.WriteLine("Start DownloadImageFromUrlAsyncMethod in thread {0}",
                 Thread.CurrentThread.ManagedThreadId);
 
-            Stream s = await client.GetStreamAsync(url).ConfigureAwait(false);
+            Stream s = await client.GetStreamAsync(url); //.ConfigureAwait(false);
 
-            Debug.WriteLine("after wait on DownloadImageFromUrlAsyncMethod in thread {0}",
+            Debug.WriteLine("after wait GetStreamAsync on DownloadImageFromUrlAsyncMethod in thread {0}",
                 Thread.CurrentThread.ManagedThreadId);
 
             Stream ms = new MemoryStream();
-            await s.CopyToAsync(ms).ConfigureAwait(false);
+            await s.CopyToAsync(ms); //.ConfigureAwait(false);
 
+            Debug.WriteLine("after wait on CopyToAsync DownloadImageFromUrlAsyncMethod in thread {0}",
+                Thread.CurrentThread.ManagedThreadId);
             return Image.FromStream(ms);
         }
     }
