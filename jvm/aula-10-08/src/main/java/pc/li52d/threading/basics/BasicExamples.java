@@ -1,10 +1,10 @@
-package pc.l52d.threading.basics;
+package pc.li52d.threading.basics;
 
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static pc.l52d.threading.Utils.sleep;
+import static pc.li52d.threading.Utils.sleep;
 
 
 public class BasicExamples {

@@ -1,4 +1,4 @@
-package pc.l52d.threading;
+package pc.li52d.threading;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

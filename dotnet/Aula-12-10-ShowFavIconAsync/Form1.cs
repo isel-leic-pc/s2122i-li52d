@@ -110,7 +110,7 @@ namespace ShowFavIconAsync
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private async void button3_Click(object sender, EventArgs e) {
-            Console.WriteLine("UI in thread {0}", Thread.CurrentThread.ManagedThreadId);
+            Debug.WriteLine("UI in thread {0}", Thread.CurrentThread.ManagedThreadId);
             string[] sites = {
                 url1.Text, url2.Text, url3.Text
             };
@@ -119,7 +119,7 @@ namespace ShowFavIconAsync
             int index = 0;
             foreach (string url in sites) {
                 Image img = await DownloadImageFromUrlAsyncMethod(url);
-                Console.WriteLine("Continuation in thread {0}", Thread.CurrentThread.ManagedThreadId);
+                Debug.WriteLine("Continuation in thread {0}", Thread.CurrentThread.ManagedThreadId);
                 viewers[index].Image = img;
                 index++;
                 status.Text = "Done with Success";
@@ -133,7 +133,7 @@ namespace ShowFavIconAsync
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private async void button4_Click(object sender, EventArgs e) {
-            Console.WriteLine("UI in thread {0}", Thread.CurrentThread.ManagedThreadId);
+            Debug.WriteLine("UI in thread {0}", Thread.CurrentThread.ManagedThreadId);
             List<Task<Image>> tasks = new List<Task<Image>> {
                 DownloadImageFromUrlAsyncMethod(url1.Text),
                 DownloadImageFromUrlAsyncMethod(url2.Text),
@@ -144,7 +144,7 @@ namespace ShowFavIconAsync
 
             while (tasks.Count > 0) {
                 var task = await Task.WhenAny(tasks);
-                Console.WriteLine("Continuation in thread {0}", Thread.CurrentThread.ManagedThreadId);
+                Debug.WriteLine("Continuation in thread {0}", Thread.CurrentThread.ManagedThreadId);
                 viewers[index].Image = task.Result;
                 index++;
                 status.Text = "Done with Success";

@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static pc.l52d.threading.Utils.sleep;
+import static pc.li52d.threading.Utils.sleep;
 
 public class MessageBoxTests {
     private static final Logger log = LoggerFactory.getLogger(MessageBoxTests.class);

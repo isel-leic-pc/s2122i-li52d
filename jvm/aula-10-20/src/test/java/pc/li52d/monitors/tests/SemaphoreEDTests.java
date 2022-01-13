@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.Assert.*;
-import static pc.l52d.threading.Utils.sleep;
-import static pc.l52d.threading.Utils.uninterruptibleJoin;
+import static pc.li52d.threading.Utils.sleep;
+import static pc.li52d.threading.Utils.uninterruptibleJoin;
 import static pc.li52d.monitors.utils.TimeoutHolder.INFINITE;
 
 

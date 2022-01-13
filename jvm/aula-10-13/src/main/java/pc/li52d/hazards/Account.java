@@ -1,7 +1,5 @@
 package pc.li52d.hazards;
 
-import static pc.l52d.threading.Utils.sleep;
-
 public class Account {
     private long balance; // in cents
     private static Object globalLock = new Object();

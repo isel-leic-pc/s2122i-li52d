@@ -1,0 +1,46 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.6.10'
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Use JUnit 4 API for testing.
+    testImplementation 'junit:junit:4.12'
+
+    // logging
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-simple
+    testImplementation 'org.slf4j:slf4j-simple:1.8.0-beta4'
+    implementation 'org.slf4j:slf4j-simple:1.8.0-beta4'
+
+    implementation 'io.github.microutils:kotlin-logging:1.12.5'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+
+    // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
+
+
+    implementation group: "org.http4k", name: "http4k-core", version: "4.11.0.1"
+    implementation group: "org.http4k", name: "http4k-server-jetty", version: "4.11.0.1"
+    implementation group: "org.http4k", name: "http4k-client-okhttp", version: "4.11.0.1"
+    // Apache v5 (Sync):
+    implementation group: "org.http4k", name: "http4k-client-apache", version: "4.11.0.1"
+
+
+    // Apache v5 (Async):
+    //implementation group: "org.http4k", name: "http4k-client-apache-async", version: "4.11.0.1"
+
+    implementation("com.squareup.moshi:moshi:1.12.0")
+    implementation("com.squareup.moshi:moshi-kotlin:1.12.0")
+
+    // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-swing
+    implementation('org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.5.2')
+
+    implementation group: 'org.jclarion', name: 'image4j', version: '0.7'
+    //Thanks for using https://jar-download.com
+}
+

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static pc.l52d.threading.Utils.*;
+import static pc.li52d.threading.Utils.*;
 
 public class BasicThreadTests {
     private static final Logger log = LoggerFactory.getLogger(BasicThreadTests.class);

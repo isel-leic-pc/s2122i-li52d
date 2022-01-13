@@ -8,6 +8,7 @@
  */
 
 rootProject.name = 's2122i-li52d'
+include('aula-01-12-kotlin-coroutines')
 include('aula-10-08')
 include 'aula-10-13'
 include 'aula-10-15'

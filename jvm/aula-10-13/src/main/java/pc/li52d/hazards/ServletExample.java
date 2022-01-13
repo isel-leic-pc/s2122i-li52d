@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import static pc.l52d.threading.Utils.sleep;
+import static pc.li52d.threading.Utils.sleep;
 
 
 public class ServletExample {

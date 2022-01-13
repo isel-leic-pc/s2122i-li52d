@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.assertEquals;
-import static pc.l52d.threading.Utils.uninterruptibleJoin;
+import static pc.li52d.threading.Utils.uninterruptibleJoin;
 
 public class HazardTests {
     private static final int NTRANSFERS = 100000;

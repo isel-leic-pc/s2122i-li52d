@@ -7,7 +7,7 @@ import pc.li52d.monitors.SimpleFuture;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
-import static pc.l52d.threading.Utils.sleep;
+import static pc.li52d.threading.Utils.sleep;
 
 public class SimpleFutureTests {
 
