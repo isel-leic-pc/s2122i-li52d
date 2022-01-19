@@ -17,6 +17,7 @@ import java.net.http.HttpResponse.BodyHandlers
 
 
 import java.util.concurrent.CompletableFuture
+import kotlin.coroutines.Continuation
 
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -25,6 +26,24 @@ import kotlin.coroutines.suspendCoroutine
 
 // Place definition above class declaration to make field static
 private val logger = KotlinLogging.logger {}
+
+
+suspend fun <T> CompletableFuture<T>.value() : T {
+
+    return suspendCoroutine<T> { cont : Continuation<T> ->
+        this.whenComplete { t, e ->
+            /*
+            if (e == null)
+                cont.resume(t)
+            else
+                cont.resumeWithException(e)
+
+             */
+            cont.resumeWithException(IllegalCallerException("Test exception!"))
+        }
+    }
+
+}
 
 fun  getAsync(url:String): CompletableFuture<String> {
     val client: HttpClient = HttpClient.newBuilder()
@@ -36,12 +55,11 @@ fun  getAsync(url:String): CompletableFuture<String> {
         .GET()
         .build()
 
-    val cf  =  client.sendAsync(request, BodyHandlers.ofString() )
-    val cf1 = cf.thenApply { resp ->
-        val str = resp.body()
-        str
-    }
-    return cf1
+   return client.sendAsync(request, BodyHandlers.ofString() )
+             .thenApply { resp ->
+                val str = resp.body()
+                str
+            }
 }
 
 fun  getIconAsync(url:String): CompletableFuture<BufferedImage> {
@@ -54,40 +72,27 @@ fun  getIconAsync(url:String): CompletableFuture<BufferedImage> {
         .GET()
         .build()
 
-    val cf =  client.sendAsync(request, BodyHandlers.ofByteArray( ) )
+    return client.sendAsync(request, BodyHandlers.ofByteArray( ) )
+           .thenApply { resp ->
+                logger.info("future continuation")
+                val input : ByteArray = resp.body()
+                var img : BufferedImage?
 
-    val cf1 = cf.thenApply { resp ->
-        logger.info("future continuation")
-        val input : ByteArray = resp.body()
-        var img : BufferedImage? = null
+                val  images = ICODecoder.read(ByteArrayInputStream(input))
+                img = images.get(images.size -1)
 
-        val  images = ICODecoder.read(ByteArrayInputStream(input))
-        img = images.get(images.size -1)
-
-        img!!
-    }
-
-    return cf1
+                img!!
+           }
 }
 
-suspend fun <T> CompletableFuture<T>.value() : T {
 
-    val res = suspendCoroutine<T> { cont ->
-        whenComplete { t, e ->
-            if (e == null)
-                cont.resume(t)
-            else
-                cont.resumeWithException(e)
-        }
-    }
-    return res
-}
 
 suspend fun getIcon(url:String, d : Long) : BufferedImage {
     logger.info("start getImage")
 
     delay(d)
-    val image = getIconAsync(url).value()
+    val image = getIconAsync(url)
+               .value()
     logger.info("end getImage")
     return image
 }

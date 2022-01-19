@@ -1,6 +1,6 @@
 package pc.li52d.sequences
 
-fun <T> sequence( block: suspend MySequenceScope<T>.() -> Unit) : MySequenceScope<T> {
+fun <T> sequence( block: suspend  MySequenceScope<T>.() -> Unit) : MySequenceScope<T> {
     return MySequenceScope(block)
 }
 
@@ -18,6 +18,8 @@ fun main() {
             next = tmp
         }
     }
-    println(fibonacci.take(20).toList())
+    println(fibonacci
+            .take(20)
+            .toList())
 
 }

@@ -1,16 +1,17 @@
 package pc.li52d.sequences
 
+import kotlinx.coroutines.Dispatchers
 import mu.KotlinLogging
 import kotlin.coroutines.*
-import kotlin.coroutines.intrinsics.createCoroutineUnintercepted
+import kotlin.coroutines.intrinsics.*
 
 // Place definition above class declaration to make field static
 private val logger = KotlinLogging.logger {}
 
 class MySequenceScope<T>(val block : suspend MySequenceScope<T>.() -> Unit) :
-    Sequence<T>, Iterator<T>, Continuation<Unit> {
+    Sequence<T>, Iterator<T> {
     var done = false
-    var cont  = block.createCoroutineUnintercepted(this, this)
+    var cont  = block.createCoroutine(this, Continuation(EmptyCoroutineContext, {r -> Unit}))
     var nextValue : T? = null
 
 
@@ -37,12 +38,15 @@ class MySequenceScope<T>(val block : suspend MySequenceScope<T>.() -> Unit) :
     suspend fun yield(value: T)  {
         nextValue = value
         logger.info("start yield")
-        suspendCoroutine<Unit> {  continuation ->
+        val res = suspendCoroutineUninterceptedOrReturn<Unit> {  continuation ->
             cont = continuation
+            COROUTINE_SUSPENDED
         }
         logger.info("end yield")
+        return res
     }
 
+    /*
     override val context: CoroutineContext
         get() =
             EmptyCoroutineContext
@@ -52,4 +56,6 @@ class MySequenceScope<T>(val block : suspend MySequenceScope<T>.() -> Unit) :
         result.getOrThrow() // just rethrow exception if it is there
         done = true
     }
+    */
+
 }

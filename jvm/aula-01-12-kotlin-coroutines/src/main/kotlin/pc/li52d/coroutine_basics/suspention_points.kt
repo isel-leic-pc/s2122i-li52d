@@ -19,14 +19,18 @@ fun resumeDelayed(millis: Long, cont : Continuation<Unit>) {
     }
 }
 
-suspend fun suspendFor(millis: Long) = suspendCoroutine<Unit> {
-        cont ->
-            resumeDelayed(millis, cont)
+suspend fun suspendFor(millis: Long) {
+    logger.info("Before suspention point!")
+        suspendCoroutine<Unit> {
+            cont  ->
+                resumeDelayed(millis, cont)
 
+        }
+    logger.info("After suspention point!")
 }
 
 suspend fun suspendTest() {
-    logger.debug("Before suspend test")
+    logger.info("Before suspend test")
     suspendFor(5000)
 
     logger.info("After suspend test")
@@ -41,14 +45,28 @@ fun startAndForget(suspendingFunction: suspend () -> Unit) {
         }
 
         override val context: CoroutineContext
-            get() = EmptyCoroutineContext
+            get() = EmptyCoroutineContext + Dispatchers.Default
     }
     suspendingFunction.startCoroutine(cont)
 }
 
-fun  main() {
+private fun  main() {
+    logger.info("start main")
+    startAndForget {
+        //println(currentCoroutineContext())
+        logger.info("coroutine start!")
+        delay(1000)
+        logger.info("coroutine done!")
+    }
+    logger.info("after launch")
 
-    runBlocking(Dispatchers.Unconfined){
+    Thread.sleep(3000)
+    logger.info("end main")
+}
+
+private fun  main0() {
+
+    runBlocking {
         logger.info("start test")
         suspendTest()
         println("end test")

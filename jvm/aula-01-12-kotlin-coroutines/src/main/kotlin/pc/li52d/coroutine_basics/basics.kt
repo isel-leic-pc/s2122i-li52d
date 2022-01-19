@@ -6,10 +6,16 @@ import mu.KotlinLogging
 // Place definition above class declaration to make field static
 private val logger = KotlinLogging.logger {}
 
+internal fun xx( ) {
+
+}
 suspend fun sayHello2( ) = coroutineScope {
+
+
     logger.info("start sayHello")
     launch(Dispatchers.IO) {
         logger.info("start sayHello in context")
+        xx()
         delay(2000)
         print("Hello")
     }

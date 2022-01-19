@@ -5,19 +5,23 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.swing.Swing
 import mu.KotlinLogging
 import pc.li52d.web.getIcon
-import java.awt.*
+import java.awt.BorderLayout
+
 import java.awt.BorderLayout.*
+import java.awt.GridLayout
+import java.awt.Image
 import java.awt.image.BufferedImage
 import javax.swing.*
 import javax.swing.WindowConstants.EXIT_ON_CLOSE
-import kotlin.coroutines.Continuation
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
+
 
 // Place definition above class declaration to make field static
 private val logger = KotlinLogging.logger {}
 
 class FavIconsApp {
+
+    private val SwingScope = CoroutineScope(Dispatchers.Swing)
+
     private val frame = JFrame()
     private val pic1Label = JLabel()
     private val pic2Label = JLabel()
@@ -65,10 +69,7 @@ class FavIconsApp {
         clicksView.text = "0"
         testPanel.add(testButton)
         testPanel.add(clicksView)
-        testButton.addActionListener {
-            val num = Integer.parseInt(clicksView.text) + 1
-            clicksView.text = num.toString()
-        }
+
         pane.add(testPanel, SOUTH)
     }
 
@@ -77,63 +78,94 @@ class FavIconsApp {
         return ImageIcon(butImg)
     }
 
-    private suspend fun processShowIcons2() = coroutineScope {
-        logger.info("event handler in thread ${Thread.currentThread().name}")
+    private suspend fun processShowIcons2() {
+        val jobs : MutableList<Job> = mutableListOf( )
+        try {
+            coroutineScope {
+                logger.info("event handler in thread ${Thread.currentThread().name}")
 
-        val pairs : Array<Pair<String,JLabel>> =
-            arrayOf(Pair(url1Text.text, pic1Label),
-                Pair(url2Text.text, pic2Label),
-                Pair(url3Text.text, pic3Label))
-        var i = 1L
-        for(pair in pairs) {
-            val local = i
+                val pairs =
+                    arrayOf(
+                        Pair(url1Text.text, pic1Label),
+                        Pair(url2Text.text, pic2Label),
+                        Pair(url3Text.text, pic3Label)
+                    )
+                var i = 1L
+                for (pair in pairs) {
+                    val local = i
 
-            async {
-                logger.info("load image ${pair.first}")
-                val img = getIcon(pair.first, local*2000)
-                pair.second.icon = processIcon(img)
-                logger.info("one more load")
+                    val job = launch {
+                            logger.info("load image ${pair.first}")
+                            val img = getIcon(pair.first, local * 2000)
+                            pair.second.icon = processIcon(img)
+                            logger.info("one more load")
+                    }
+                    jobs.add(job)
+
+                    ++i
+                }
+
+                logger.info("after loads")
             }
-            ++i
         }
+        catch(e: Exception) {
+            logger.info("exception : $e}")
+            jobs.forEach {
+                logger.info("$it")
+            }
+            throw e
 
-        logger.info("after loads")
+        }
     }
 
-    private suspend fun processShowIcons() = coroutineScope{
+    private suspend fun processShowIcons() {
+        try {
+            coroutineScope {
 
-        val pairs : Array<Pair<String,JLabel>> =
-            arrayOf(Pair(url1Text.text, pic1Label),
-                Pair(url2Text.text, pic2Label),
-                Pair(url3Text.text, pic3Label))
-        var i = 1L
+                val pairs =
+                    arrayOf(
+                        Pair(url1Text.text, pic1Label),
+                        Pair(url2Text.text, pic2Label),
+                        Pair(url3Text.text, pic3Label)
+                    )
+                var i = 1L
 
-     
-        for(pair in pairs) {
+                for (pair in pairs) {
 
-            logger.info("start one more load")
-            val img =  getIcon(pair.first, i*2000)
-            val butImg = img.getScaledInstance(120, 120, Image.SCALE_SMOOTH)
-            pair.second.icon = ImageIcon(butImg)
-            logger.info("one more load")
-            pair.second.icon = ImageIcon(img)
-            ++i
+                    logger.info("start one more load")
+                    val img = getIcon(pair.first, i * 2000)
+                    val butImg = img.getScaledInstance(120, 120, Image.SCALE_SMOOTH)
+                    pair.second.icon = ImageIcon(butImg)
+                    logger.info("one more load")
+
+                    ++i
+                }
+
+                logger.info("after loads")
+            }
         }
+        catch(e: Exception) {
 
-        logger.info("after loads")
+        }
     }
 
 
     private fun initEvents() {
         showBut.addActionListener {
-            logger.info("event handler in thread ${Thread.currentThread().name}")
+            logger.info("start showBut  handler")
 
-            GlobalScope.launch(Dispatchers.Swing)  {
-                processShowIcons()
+            SwingScope.launch {
+                logger.info("start processShowIcons")
+                processShowIcons2()
             }
-            logger.info("end of showBut handler in thread ${Thread.currentThread().name}")
+            logger.info("end showBut handler in thread")
         }
 
+        testButton.addActionListener {
+            logger.info("testButton Handler" )
+            val num = Integer.parseInt(clicksView.text) + 1
+            clicksView.text = num.toString()
+        }
     }
 
     init {
@@ -147,5 +179,4 @@ class FavIconsApp {
 
 private fun main() {
     val app = FavIconsApp()
-
 }
