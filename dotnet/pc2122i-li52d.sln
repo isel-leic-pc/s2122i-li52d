@@ -21,11 +21,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aula-12-15-AsyncMethodsTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aula-12-17-AsyncMethodsAndAsynchronizers", "Aula-12-17-AsyncMethodsAndAsynchronizers\Aula-12-17-AsyncMethodsAndAsynchronizers.csproj", "{50FF194C-EA7C-4BEF-8F40-E8B0ED7F02AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aula-01-05-MoreAsync", "Aula-01-05-MoreAsync\Aula-01-05-MoreAsync.csproj", "{8A6FA767-311F-488C-ADFD-AE55C19A3067}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aula-01-05-MoreAsync", "Aula-01-05-MoreAsync\Aula-01-05-MoreAsync.csproj", "{8A6FA767-311F-488C-ADFD-AE55C19A3067}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aula-01-05-AsyncSemaphoreNunitTests", "Aula-01-05-AsyncSemaphoreNunitTests\Aula-01-05-AsyncSemaphoreNunitTests.csproj", "{CE72C755-A2E4-4497-9C64-CBE5E4239A37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aula-01-05-AsyncSemaphoreNunitTests", "Aula-01-05-AsyncSemaphoreNunitTests\Aula-01-05-AsyncSemaphoreNunitTests.csproj", "{CE72C755-A2E4-4497-9C64-CBE5E4239A37}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aula-12-10-ShowFavIconAsync", "Aula-12-10-ShowFavIconAsync\Aula-12-10-ShowFavIconAsync.csproj", "{2F4FF8BD-52A6-4280-BAEA-42DFD4414AAE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OldExams", "OldExams\OldExams.csproj", "{29A9A39F-2AA8-48C7-96A1-8E9A83609FDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{2F4FF8BD-52A6-4280-BAEA-42DFD4414AAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F4FF8BD-52A6-4280-BAEA-42DFD4414AAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F4FF8BD-52A6-4280-BAEA-42DFD4414AAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29A9A39F-2AA8-48C7-96A1-8E9A83609FDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29A9A39F-2AA8-48C7-96A1-8E9A83609FDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29A9A39F-2AA8-48C7-96A1-8E9A83609FDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29A9A39F-2AA8-48C7-96A1-8E9A83609FDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

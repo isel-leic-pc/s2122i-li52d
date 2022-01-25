@@ -9,8 +9,8 @@ namespace Aula_12_16_AsyncMethodsAndAsynchronizers.Asynchronizers
     /// <typeparam name="T"></typeparam>
     public class AsyncBlockingQueue<T>
     {
-        private ConcurrentQueue<T> items;
-        private AsyncSemaphore itemsAvaiable;
+        private readonly ConcurrentQueue<T> items;
+        private readonly AsyncSemaphore itemsAvaiable;
 
         AsyncBlockingQueue() {
             items = new ConcurrentQueue<T>();

@@ -15,7 +15,7 @@ namespace ShowFavIconAsync
   
     using static AsyncModel;
 
-    public partial class Form1 : Form
+    public  class Form1 : Form
     {
 
         public Form1() {

@@ -16,15 +16,15 @@ namespace Aula_01_05_MoreAsync
         private static readonly Task<bool> TrueTask = Task.FromResult(true);
         private static readonly Task<bool> FalseTask = Task.FromResult(false);
 
-        private Action<object> cancelAction;                    // action called on cancellation
-        private TimerCallback timeoutAction;                    // action called on timeout
+        private readonly Action<object> cancelAction;                    // action called on cancellation
+        private readonly TimerCallback timeoutAction;                    // action called on timeout
 
         private class PendingRequest : TaskCompletionSource<bool>
         {
             internal readonly int n;
             private Timer timer;
             private CancellationTokenRegistration cancelRegist;
-            private CancellationToken token;
+            private readonly CancellationToken token;
 
 
             // this flag is crucial to avoid multiple concurrent completions
